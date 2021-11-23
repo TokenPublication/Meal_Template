@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".UI.Activities.DummySaleActivity"
+    android:paddingBottom="20dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sale"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        tools:text="100 TL"
+        android:textSize="40sp"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/btnSale"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Sale"
+        android:onClick="onClick"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAmount"
+        android:background="@drawable/button_blue"
+        android:textColor="#fff"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/border_white">
+
+        <Button
+            android:id="@+id/btnSuccess"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_blue"
+            android:onClick="onClick"
+            android:text="SUCCESS"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toTopOf="@+id/btnCancel"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnError"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_blue"
+            android:onClick="onClick"
+            android:text="ERROR"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toTopOf="@+id/btnCancel"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_blue"
+            android:onClick="onClick"
+            android:text="CANCELED"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toTopOf="@+id/btnUnable"
+            app:layout_constraintStart_toStartOf="@id/btnSuccess" />
+
+        <Button
+            android:id="@+id/btnOffline"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_blue"
+            android:onClick="onClick"
+            android:text="OFFLINE_DECLINE"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toTopOf="@+id/btnUnable"
+            app:layout_constraintEnd_toEndOf="@+id/btnError" />
+
+        <Button
+            android:id="@+id/btnUnable"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:text="UNABLE_DECLINE"
+            android:onClick="onClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/btnSuccess"
+            android:background="@drawable/button_blue"
+            android:textColor="#fff"/>
+
+        <Button
+            android:id="@+id/btnOnlineDecline"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="ONLINE_DECLINE"
+            android:onClick="onClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnError"
+            android:background="@drawable/button_blue"
+            android:textColor="#fff"/>
+
+        <CheckBox
+            android:id="@+id/cbCustomer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer Slip"
+            android:textColor="@color/white"
+            android:checked="false"
+            android:buttonTint="@color/color_token"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnSuccess"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <CheckBox
+            android:id="@+id/cbMerchant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Merchant Slip"
+            android:textColor="@color/white"
+            android:checked="false"
+            android:buttonTint="@color/color_token"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/cbCustomer"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textDummyResponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dummy Response"
+        android:textColor="@color/white"
+        android:background="@color/dark_gray"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/containerLayout"
+        app:layout_constraintTop_toTopOf="@+id/containerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tokeninc.sardis.application_template">
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:name=".AppTemp"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".UI.Activities.MainActivity"
+                  android:label="Food Template">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="PosTxn_Action" />
+                <data android:mimeType="text/plain" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UI.Activities.DummySaleActivity" android:launchMode="singleTop"
+            android:label="Dummy Sale Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="Food_Sale_Action" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UI.Activities.SaleActivity"
+            android:launchMode="singleTop"
+            android:label="Sale Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UI.Activities.SettingsActivity" android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="Settings_Action" />
+                <data android:mimeType="text/plain" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UI.Activities.CustomInputListActivity" />
+        <activity android:name=".UI.Activities.InfoDialogActivity" />
+        <activity android:name=".UI.Activities.ConfirmationDialogActivity" />
+        <activity android:name=".UI.Activities.TriggerActivity" >
+            <intent-filter>
+                <action android:name="BatchClose_Action" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="Parameter_Action" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UI.Activities.ExamplesActivity" />
+        <activity android:name=".UI.Activities.PosOperations.RefundActivity" />
+        <activity android:name=".UI.Activities.PosOperations.TransactionsActivity" />
+        <activity android:name=".UI.Activities.PosOperations.VoidActivity" >
+        <intent-filter>
+            <action android:name="Refund_Action" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="text/plain" />
+        </intent-filter>
+    </activity>
+        <meta-data android:name="app_name" android:value="FOOD_000_TMPLT" />
+
+    </application>
+
+</manifest>
