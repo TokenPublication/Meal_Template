@@ -1,9 +1,11 @@
 package com.tokeninc.sardis.application_template.UI.Activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -40,7 +42,7 @@ public class SettingsActivity extends BaseActivity {
     private String merchantId, ip_no, port_no;
     private static Context context;
     DatabaseHelper databaseHelper;
-    private boolean isBankActivateAction = true, DB_getAllTransactionsCount = true;
+    private boolean isFoodActivateAction = true, isFoodUpdateParameterAction = true, DB_getAllTransactionsCount = true;
 
     public SettingsActivity() {
     }
@@ -57,14 +59,19 @@ public class SettingsActivity extends BaseActivity {
         SettingsActivity.context = getApplicationContext();
         databaseHelper = new DatabaseHelper(this);
 
-        isBankActivateAction = getIntent() != null && getIntent().getAction() != null
-                && getIntent().getAction().equals("Activate_Bank");
-        if (isBankActivateAction) {
+        isFoodActivateAction = getIntent() != null && getIntent().getAction() != null
+                && getIntent().getAction().equals("Activate_Food");
+        isFoodUpdateParameterAction = getIntent() != null && getIntent().getAction() != null
+                && getIntent().getAction().equals("Update_Parameter");
+        if (isFoodActivateAction) {
             terminalId = getIntent().getStringExtra("terminalID");
             merchantId = getIntent().getStringExtra("merchantID");
-            startActivation();
-        }
-        else {
+            startActivation(terminalId, merchantId);
+        } else if (isFoodUpdateParameterAction) {
+            terminalId = getIntent().getStringExtra("terminalID");
+            merchantId = getIntent().getStringExtra("merchantID");
+            startUpdateParameter(terminalId, merchantId);
+        } else {
             showMenu();
         }
     }
@@ -169,14 +176,15 @@ public class SettingsActivity extends BaseActivity {
                 databaseHelper.updateMerchantId(merchantId);
                 databaseHelper.updateTerminalId(terminalId);
 
-                startActivation();
+                startActivation("","");
             }
         });
         addFragment(R.id.thirdContainer, TidMidFragment, true);
     }
 
     // Dummy activation response
-    private void startActivation() {
+    private void startActivation(String terminalId, String merchantId) {
+        Log.i("SettingsActivity", "Start Activation called with terminalId " + terminalId + "merchantId " + merchantId);
         if (DB_getAllTransactionsCount) {
 
             InfoDialog dialog = showInfoDialog(InfoDialog.InfoType.Processing, getString(R.string.starting_activation), false);
@@ -194,7 +202,11 @@ public class SettingsActivity extends BaseActivity {
                                     dialog.update(InfoDialog.InfoType.Confirmed, getString(R.string.activation_completed));
                             new Handler().postDelayed(() -> {
                                 dialog.dismiss();
-                                printService.print(PrintHelper.PrintSuccess()); // Print success
+                                printService.print(PrintHelper.PrintSuccessWithIdentification(terminalId, merchantId)); // Print success
+                                new Handler().postDelayed(() -> {
+                                    setResult(Activity.RESULT_OK);
+                                    finish();
+                                }, 1000);
                                   }, 2000);
                              }, 2000);
                             }, 2000);
@@ -207,7 +219,21 @@ public class SettingsActivity extends BaseActivity {
         else {
             new Handler().postDelayed(() -> {
             InfoDialog progress = showInfoDialog(InfoDialog.InfoType.Progress, getString(R.string.parameter_loading), false);
+                new Handler().postDelayed(() -> {
+                    setResult(Activity.RESULT_OK);
+                    finish();
+                }, 1000);
             }, 2000);
         }
+    }
+
+    private void startUpdateParameter(String terminalId, String merchantId) {
+        // update parameter
+        Log.i("SettingsActivity", "Start Update Parameter called with terminalId " + terminalId + "merchantId " + merchantId);
+        printService.print(PrintHelper.PrintSuccessWithIdentification(terminalId, merchantId)); // Print success
+        new Handler().postDelayed(() -> {
+            setResult(Activity.RESULT_OK);
+            finish();
+        }, 5000);
     }
 }

@@ -43,6 +43,16 @@
                 <data android:mimeType="text/plain" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="Activate_Food" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="Update_Parameter" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
         </activity>
         <activity android:name=".UI.Activities.CustomInputListActivity" />
         <activity android:name=".UI.Activities.InfoDialogActivity" />
@@ -69,8 +79,19 @@
             <data android:mimeType="text/plain" />
         </intent-filter>
     </activity>
-        <meta-data android:name="app_name" android:value="FOOD_000_TMPLT" />
-
+        <receiver android:name=".receivers.CheckSaleReceiver">
+            <intent-filter>
+                <action android:name="check_sale" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="app_name" android:value="FOOD_TEMPLATE" />
+        <meta-data
+            android:name="app_model_type"
+            android:value="400TR"/>
+        <meta-data
+            android:name="app_version"
+            android:value="5"/>
     </application>
 
 </manifest>
