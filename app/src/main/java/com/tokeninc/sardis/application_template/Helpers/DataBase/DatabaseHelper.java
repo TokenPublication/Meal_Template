@@ -131,6 +131,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return batch_no == null ? null : Integer.valueOf(batch_no);
     }
 
+    // query a sale with uuid column
+    public DataModel getSale(String uuid) {
+        // return dummy data model from uuid
+        return new DataModel("1", "1", "1", "0", "1", "1", "1", "1", "1");
+    }
+
     public void updateBatch(String batch_no){
         try {
             SQLiteDatabase db = this.getWritableDatabase();

@@ -10,7 +10,7 @@ public class PrintHelper extends BasePrintHelper {
         StyledString styledText = new StyledString();
 
         // Strings must be max 29 digits
-        addTextToNewLine(styledText, "Banka uygulaması", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "Yemek kartı uygulaması", PrinterDefinitions.Alignment.Center);
         addTextToNewLine(styledText, "başarıyla kurulmuştur", PrinterDefinitions.Alignment.Center);
         addTextToNewLine(styledText, "kullanımı için", PrinterDefinitions.Alignment.Center);
         addTextToNewLine(styledText, "https://www.tokeninc.com/", PrinterDefinitions.Alignment.Center);
@@ -24,6 +24,37 @@ public class PrintHelper extends BasePrintHelper {
         addTextToNewLine(styledText, "Beko YazarkasaPos", PrinterDefinitions.Alignment.Center);
         addTextToNewLine(styledText, "Çözüm Merkezi", PrinterDefinitions.Alignment.Center);
         addTextToNewLine(styledText, "0850 250 0 767", PrinterDefinitions.Alignment.Center);
+
+        addTextToNewLine(styledText, DateUtil.getDate("dd-MM-yy"), PrinterDefinitions.Alignment.Left);
+        addText(styledText, DateUtil.getTime("HH:mm"), PrinterDefinitions.Alignment.Right);
+
+        styledText.newLine();
+        styledText.addSpace(100);
+
+        return styledText.toString();
+    }
+
+    public static String PrintSuccessWithIdentification(String terminalId, String merchantId)
+    {   // Print the success message
+        StyledString styledText = new StyledString();
+
+        // Strings must be max 29 digits
+        addTextToNewLine(styledText, "Yemek kartı uygulaması", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "başarıyla kurulmuştur", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "kullanımı için", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "https://www.tokeninc.com/", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "adresini ziyaret edin", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "-----------------------------", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "Banka uygulaması sorularınız", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "için, Banka Pos", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "Destek Hattı 0850 000 0 000", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "-----------------------------", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "YazarkasaPos sorularınız için", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "Beko YazarkasaPos", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "Çözüm Merkezi", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "0850 250 0 767", PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "Terminal ID: " + terminalId, PrinterDefinitions.Alignment.Center);
+        addTextToNewLine(styledText, "Merchant ID: " + merchantId, PrinterDefinitions.Alignment.Center);
 
         addTextToNewLine(styledText, DateUtil.getDate("dd-MM-yy"), PrinterDefinitions.Alignment.Left);
         addText(styledText, DateUtil.getTime("HH:mm"), PrinterDefinitions.Alignment.Right);

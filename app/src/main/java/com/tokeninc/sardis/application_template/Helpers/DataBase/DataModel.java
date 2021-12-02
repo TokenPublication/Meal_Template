@@ -12,6 +12,20 @@ public class DataModel {
     public String batch_no;
     public String tx_no;
 
+    public DataModel(){}
+
+    public DataModel(String card_no, String process_time, String sale_amount, String approval_code, String serial_no, String merchant_id, String terminal_id, String batch_no, String tx_no) {
+        this.card_no = card_no;
+        this.process_time = process_time;
+        this.sale_amount = sale_amount;
+        this.approval_code = approval_code;
+        this.serial_no = serial_no;
+        this.merchant_id = merchant_id;
+        this.terminal_id = terminal_id;
+        this.batch_no = batch_no;
+        this.tx_no = tx_no;
+    }
+
     public String getCard_no() {
         return card_no;
     }
