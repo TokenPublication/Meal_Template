@@ -59,6 +59,7 @@ public class SettingsActivity extends BaseActivity {
         SettingsActivity.context = getApplicationContext();
         databaseHelper = new DatabaseHelper(this);
 
+        //The below code includes remote activation with the merchantID and terminalID.
         isFoodActivateAction = getIntent() != null && getIntent().getAction() != null
                 && getIntent().getAction().equals("Activate_Food");
         isFoodUpdateParameterAction = getIntent() != null && getIntent().getAction() != null
