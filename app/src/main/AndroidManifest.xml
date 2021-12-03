@@ -43,6 +43,7 @@
                 <data android:mimeType="text/plain" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <!--The below filter is added to support remote activation feature-->
             <intent-filter>
                 <action android:name="Activate_Food" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -58,6 +59,7 @@
         <activity android:name=".UI.Activities.InfoDialogActivity" />
         <activity android:name=".UI.Activities.ConfirmationDialogActivity" />
         <activity android:name=".UI.Activities.TriggerActivity" >
+            <!--The below filter is added to support batch close functionality.-->
             <intent-filter>
                 <action android:name="BatchClose_Action" />
                 <category android:name="android.intent.category.DEFAULT" />
