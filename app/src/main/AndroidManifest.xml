@@ -93,7 +93,7 @@
             android:value="400TR"/>
         <meta-data
             android:name="app_version"
-            android:value="5"/>
+            android:value="8"/>
     </application>
 
 </manifest>

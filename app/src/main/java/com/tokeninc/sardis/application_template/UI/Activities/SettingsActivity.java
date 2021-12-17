@@ -16,6 +16,7 @@ import com.token.uicomponents.CustomInput.InputValidator;
 import com.token.uicomponents.ListMenuFragment.IListMenuItem;
 import com.token.uicomponents.ListMenuFragment.ListMenuFragment;
 import com.token.uicomponents.infodialog.InfoDialog;
+import com.tokeninc.deviceinfo.DeviceInfo;
 import com.tokeninc.sardis.application_template.BaseActivity;
 import com.tokeninc.sardis.application_template.Helpers.DataBase.DatabaseHelper;
 import com.tokeninc.sardis.application_template.Helpers.PrintHelpers.PrintHelper;
@@ -177,7 +178,7 @@ public class SettingsActivity extends BaseActivity {
                 databaseHelper.updateMerchantId(merchantId);
                 databaseHelper.updateTerminalId(terminalId);
 
-                startActivation("","");
+                new Handler(Looper.getMainLooper()).post(() -> startActivation(terminalId,merchantId));
             }
         });
         addFragment(R.id.thirdContainer, TidMidFragment, true);
@@ -204,10 +205,11 @@ public class SettingsActivity extends BaseActivity {
                             new Handler().postDelayed(() -> {
                                 dialog.dismiss();
                                 printService.print(PrintHelper.PrintSuccessWithIdentification(terminalId, merchantId)); // Print success
+                                new DeviceInfo(getApplicationContext()).setMealParams(b -> Log.i("Meal Template", "DeviceInfoBankParamsSetterHandler result " + b), terminalId, merchantId);
                                 new Handler().postDelayed(() -> {
                                     setResult(Activity.RESULT_OK);
                                     finish();
-                                }, 1000);
+                                }, 5000);
                                   }, 2000);
                              }, 2000);
                             }, 2000);
