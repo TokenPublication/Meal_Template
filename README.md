@@ -1,1 +1,1 @@
-# Food Application Template
+# Meal Application Template
